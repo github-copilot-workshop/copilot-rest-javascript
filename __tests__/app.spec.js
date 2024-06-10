@@ -1,6 +1,16 @@
 const request = require('supertest');
 const app = require('../app');
 
+let server;
+
+beforeAll(() => {
+    server = app.listen(3000);
+});
+
+afterAll(() => {
+    server.close();
+});
+
 describe('GET /api/time', () => {
     it('should return the current time', async () => {
         const response = await request(app).get('/api/time');

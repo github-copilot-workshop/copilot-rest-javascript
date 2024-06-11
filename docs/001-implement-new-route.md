@@ -92,3 +92,27 @@ stop the application after running the tests
 > Note: it is true that the comment is longer that the code, but this is done to learn how to use copilot and understand the importance of being precise in the "prompt".
 
 </details>
+
+---
+
+## 002 Add new test for the new route
+
+Add a new test to the file `__tests__/app.spec.js` that test the new route `GET /countries`
+
+The test should validate that the route returns a JSON Array with multiple entries with the first one being:
+
+```json
+{"country":"China","population":1412600000}
+``` 
+
+<details>
+
+<summary>Possible Flow</summary>
+
+1. Open the file `__tests__/app.spec.js`
+
+2. Add a comment or use the inline chat (CTRL+i) to ask Copilot to:
+
+  - add a new test for the route `GET /api/countries`
+  - that should return a JSON Array with multiple entries
+  - the first entry should be `{"country":"China","population":1412600000}`

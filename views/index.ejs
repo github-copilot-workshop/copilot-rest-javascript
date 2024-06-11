@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+  <h1><%= title %></h1>
+  <p>Welcome to <%= title %></p>
+
+  <!-- Table to display countries -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Country</th>
+        <th>Population (Millions)</th>
+      </tr>
+    </thead>
+    <tbody id="countriesTableBody">
+      <!-- Rows will be added here -->
+    </tbody>
+  </table>
+
+  <!-- Include Bootstrap JS and Popper.js -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Script to fetch countries data and populate the table -->
+  <script>
+    fetch('/api/countries')
+      .then(response => response.json())
+      .then(data => {
+        const tableBody = document.getElementById('countriesTableBody');
+        data.forEach(country => {
+          const row = document.createElement('tr');
+          const countryCell = document.createElement('td');
+          countryCell.textContent = country.country;
+          const populationCell = document.createElement('td');
+          populationCell.textContent = (country.population / 1000000).toFixed(1) + 'M';
+          row.appendChild(countryCell);
+          row.appendChild(populationCell);
+          tableBody.appendChild(row);
+        });
+      })
+      .catch(error => console.error('Error fetching countries:', error));
+  </script>
+</body>
 </html>

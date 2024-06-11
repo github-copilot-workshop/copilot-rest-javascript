@@ -1,16 +1,13 @@
 var express = require('express');
 var router = express.Router();
-
+var fs = require('fs');
+var path = require('path');
 
 router.get('/time', function(req, res, next) {
     const currentTime = new Date().toLocaleTimeString();
     res.json({ time: currentTime });
 });
 
-// Create a new route GET /hello?key=World
-// that returns a JSON {"message": "Hello World"} when the query parameter key is present
-// and return HTTP 501 code with message "key query parameter is required"
-// when the query parameter key is not present
 router.get('/hello', function(req, res, next) {
     const { key } = req.query;
     if (!key) {
@@ -18,6 +15,17 @@ router.get('/hello', function(req, res, next) {
     } else {
         res.json({ message: `Hello ${key}` });
     }
+});
+
+
+router.get('/countries', function(req, res, next) {
+    fs.readFile(path.join(__dirname, '../data/countries.json'), 'utf8', (err, data) => {
+        if (err) {
+            res.status(500).json({ message: 'Error reading countries data' });
+            return;
+        }
+        res.json(JSON.parse(data));
+    });
 });
 
 module.exports = router;

@@ -4,7 +4,7 @@ const app = require('../app');
 let server;
 
 beforeAll(() => {
-    server = app.listen(3000);
+    server = app.listen(3001);
 });
 
 afterAll(() => {
@@ -37,4 +37,12 @@ describe('GET /api/hello', () => {
         expect(response.body.message).toBe('key query parameter is required');
     });
 
+});
+
+it('should have the first entry as {"country":"China","population":1412600000}', async () => {
+    const response = await request(app).get('/api/countries');
+    expect(response.status).toBe(200);
+    expect(Array.isArray(response.body)).toBe(true);
+    expect(response.body.length).toBeGreaterThan(0);
+    expect(response.body[0]).toEqual({"country":"China","population":1412600000});
 });

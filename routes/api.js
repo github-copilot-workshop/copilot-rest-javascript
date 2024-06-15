@@ -17,15 +17,21 @@ router.get('/hello', function(req, res, next) {
     }
 });
 
-
-router.get('/countries', function(req, res, next) {
-    fs.readFile(path.join(__dirname, '../data/countries.json'), 'utf8', (err, data) => {
+router.get('/vms', function(req, res, next) {
+    const filePath = path.join(__dirname, '../data/vms.json');
+    fs.readFile(filePath, 'utf8', (err, data) => {
         if (err) {
-            res.status(500).json({ message: 'Error reading countries data' });
-            return;
+            res.status(500).json({ message: 'Error reading VMs data' });
+        } else {
+            try {
+                const jsonData = JSON.parse(data);
+                res.json(jsonData);
+            } catch (parseError) {
+                res.status(500).json({ message: 'Error parsing VMs data' });
+            }
         }
-        res.json(JSON.parse(data));
     });
 });
+
 
 module.exports = router;

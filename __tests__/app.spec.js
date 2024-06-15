@@ -39,10 +39,35 @@ describe('GET /api/hello', () => {
 
 });
 
-it('should have the first entry as {"country":"China","population":1412600000}', async () => {
-    const response = await request(app).get('/api/countries');
-    expect(response.status).toBe(200);
-    expect(Array.isArray(response.body)).toBe(true);
-    expect(response.body.length).toBeGreaterThan(0);
-    expect(response.body[0]).toEqual({"country":"China","population":1412600000});
+
+describe('GET /api/vms', () => {
+    it('should return the list of VMs with correct properties', async () => {
+        const response = await request(app).get('/api/vms');
+        expect(response.status).toBe(200);
+        expect(response.body).toBeInstanceOf(Array);
+        expect(response.body.length).toBeGreaterThan(0);
+        response.body.forEach(vm => {
+            expect(vm).toHaveProperty('size');
+            expect(vm).toHaveProperty('vcpu');
+            expect(vm).toHaveProperty('memory');
+            expect(typeof vm.size).toBe('string');
+            expect(typeof vm.vcpu).toBe('number');
+            expect(typeof vm.memory).toBe('number');
+        });
+    });
+
+    it('should include VM with size "Standard_D2_v31" and 2 vCPUs', async () => {
+        const response = await request(app).get('/api/vms');
+        expect(response.status).toBe(200);
+        const hasD2v31 = response.body.some(vm => vm.size === "Standard_D2_v31" && vm.vcpu === 2);
+        expect(hasD2v31).toBe(true);
+    });
+
+    it('should include VM with size "Standard_D64_v3" and 256 GB memory', async () => {
+        const response = await request(app).get('/api/vms');
+        expect(response.status).toBe(200);
+        const hasD64v3 = response.body.some(vm => vm.size === "Standard_D64_v3" && vm.memory === 256);
+        expect(hasD64v3).toBe(true);
+    });
 });
+

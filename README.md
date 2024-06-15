@@ -1,36 +1,32 @@
-# Learning GitHub Copilot with Express.js Project
+# Express Application Documentation
 
-This project is an Express.js application designed to demonstrate and facilitate the learning of GitHub Copilot, an AI pair programmer that helps you write code faster and with less effort. Through the implementation of new API routes and unit tests, this project serves as a practical guide to understanding how to effectively use GitHub Copilot in your development workflow.
+This documentation provides an overview of the Express application, including new API routes, generating sample data, and updating the homepage. Follow the steps outlined in each section to enhance the application's functionality.
 
-## Project Overview
+## New API Routes
 
-The project is structured around a simple Express.js application that includes several routes, views, and a stylesheet. It's set up to run on a Node.js server and uses EJS for templating. The main focus of this project is to add new functionality to the application by leveraging GitHub Copilot's capabilities.
+We've added new routes to the application, including a "Hello World" route and a route to list Microsoft Azure VMs information. For more details on implementing these routes and their corresponding tests, refer to the following documents:
 
+- [New API Routes](001-implement-new-route.md): Learn how to add a new "Hello World" route and its tests.
+- [Generate Sample Data](002-data-and-services.md): Instructions on creating a new API that lists Microsoft Azure VMs information, including generating sample data and adding tests for the new API.
+
+## Updating the Homepage
+
+The homepage has been updated to display a list of VMs. This involves updating the `index.ejs` file to use Bootstrap style and call the VM REST API defined in `api.js` and `vms.json`. For a detailed guide on updating the homepage, see:
+
+- [Update the Homepage](003-update-the-homepage.md): Steps to create a home page that shows the list of VMs with a Bootstrap-styled HTML table.
 
 ## Getting Started
 
-Before diving into the code, make sure to install the project dependencies:
+Before starting with the exercises, make sure to install the necessary dependencies by running:
 
 ```bash
 npm install
 ```
-To start the application, run:
+
+To test the application, ensure the server is not running and execute:
 
 ```
-npm start
+npm test
 ```
 
-This will launch the server on http://localhost:3000, where you can access the implemented routes.
-
-## Learning GitHub Copilot
-GitHub Copilot is integrated into this project as a tool to accelerate the development process and to provide an opportunity for learning through doing. The documentation in docs/001-implement-new-route.md outlines specific tasks to be completed with the assistance of GitHub Copilot, including the addition of new API routes and the completion of unit tests.
-
-### Implementing New Routes
-The document guides you through the process of using GitHub Copilot to add a new "Hello World" route to the application. It emphasizes the importance of precise prompts to effectively communicate your intentions to GitHub Copilot.
-
-### Completing Unit Tests
-Another key learning aspect is using GitHub Copilot to address failing unit tests. The document provides instructions on how to use GitHub Copilot to start and stop the application before and after running tests, ensuring a smooth testing process.
-
-### Conclusion
-This project not only serves as a practical introduction to developing with Express.js but also as a hands-on guide to mastering GitHub Copilot. By following the steps outlined in the documentation, you'll gain valuable insights into how GitHub Copilot can enhance your coding experience and productivity.
-
+For any issues or further clarification, refer to the detailed steps in the linked documents or consult the final solution in the solutions branch: [Solutions Branch](https://github.com/github-copilot-workshop/copilot-rest-javascript/tree/solutions).

@@ -57,9 +57,8 @@ You can find the VMs properties here https://learn.microsoft.com/en-us/azure/vir
 
 4. Create a the file : `./data/vms.json`
 
-6. Open the file `./routes/api.js` and add the following code
+6. Open the file `./routes/api.js`, use the inline chat (CTRL+i) to ask the following question
     - _Create a new GET route that read the `../data/vms.json` file and return the JSON content_
-
 
    
 
@@ -82,7 +81,7 @@ Add new tests for the new API that list Microsoft Azure VMs informations.
 
 <summary>Possible Flow</summary>
 
-1. Open the file `$PROJECT_HOME/copilot/tests.py` and add the following code
+1. Open the file `__tests__` and add the following code
 
     - Use the inline completion to write a new test
     - Something like :
